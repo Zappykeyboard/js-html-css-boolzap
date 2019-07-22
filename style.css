@@ -190,8 +190,21 @@
   padding: 10px;
 }
 
-#text-comp-area {
+#text-composition-area {
   width: 100%;
   height: 60px;
-  background: gray;
+  background: #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 19px;
+  padding: 20px;
+}
+
+#chat-text-box{
+  height: 3rem;
+  flex-grow: 1;
+  margin: 0 20px;
+  padding: 10px;
+  border: none;
 }
