@@ -12,6 +12,7 @@
   position: relative;
 }
 
+
 /*banda verde*/
 
 #green-band {
@@ -40,9 +41,6 @@
   clear: both;
 }
 
-.fas, .far{
-  font-size: 25px;
-}
 
 /* Area sinistra */
 
@@ -62,6 +60,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  font-size: 25px;
 }
 
 .action-buttons i:nth-child(2) {
@@ -91,7 +90,7 @@
 #search-area {
   width: 100%;
   height: 40px;
-  background: rgb(216, 211, 211);
+  background: rgb(238, 234, 234);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,10 +116,6 @@
   padding: 0 10px;
 }
 
-/* #search-area::before{
-  content: "\f002"
-} */
-
 #contact-list {
   width: 100%;
   height: calc(100% - 160px);
@@ -144,13 +139,14 @@
   background: rgb(198, 194, 194);
   cursor: pointer;
 }
+
+
 /*Area destra*/
 
 #app-right-side {
   float: right;
   height: 100%;
   width: 70%;
-  background: green;
   position: relative;
 }
 
@@ -179,8 +175,19 @@
 #chat-area {
   width: 100%;
   height: calc(100% - 120px);
-  background: white;
+  background: #e4ddd6;
   overflow: hidden;
+  font-size: 19px;
+}
+
+.user-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  float: right;
+  background: rgb(140, 205, 140);
+  margin: 20px 10px 10px 20px;
+  padding: 10px;
 }
 
 #text-comp-area {
