@@ -194,6 +194,10 @@
   clear: both;
 }
 
+.user-message {
+  display: none;
+}
+
 .user-message-body {
   display: flex;
   align-items: center;
@@ -201,7 +205,20 @@
   align-self: flex-end;
   background: rgb(140, 205, 140);
   margin: 20px 30px 10px 20px;
-  
+  padding: 20px;
+}
+
+.contact-message {
+  display: none;
+}
+.contact-message-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background: white;
+  margin: 20px 30px 10px 20px;
+  padding: 20px;
 }
 
 #text-composition-area {
