@@ -64,7 +64,7 @@
   padding: 0 20px;
 }
 
-#user-profile .action-buttons i:nth-child(2) {
+.action-buttons i:nth-child(2) {
   margin: 0 10px;
 }
 
@@ -159,7 +159,22 @@
   height: 60px;
   background: #eaeaea;
   border-left: 1px solid rgb(123, 121, 121);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
+
+#contact-info{
+  display: flex;
+  align-items: center;
+}
+
+#contact-info div{
+  margin: 0 10px;
+}
+
+
 
 #chat-area {
   width: 100%;
