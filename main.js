@@ -16,6 +16,7 @@ $(document).ready(function(){
 
       $("#chat-text-box").val("");
 
+      //rimetto l'icona microfono microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
 
       //dopo un secondo, genero la risposta 
