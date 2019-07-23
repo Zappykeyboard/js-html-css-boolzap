@@ -1,12 +1,13 @@
 $(document).ready(function(){
 
 
-
+  //mostra il messaggio dell'utente
   function sendTheText(){
 
     var input = $("#chat-text-box").val();
-    console.log(input);
+
     if (input !== ""){
+      //clono il template
       var template = $(".user-message .user-message-body").clone();
 
       template.text(input);
@@ -15,8 +16,21 @@ $(document).ready(function(){
 
       $("#chat-text-box").val("");
 
-      $("#send-text i").removeClass("fa-paper-plane").addClass("fa-microphone");
+      $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
+
+      //dopo un secondo, genero la risposta 
+      setTimeout(reply, 1000);
     }
+  }
+
+  //mostra la risposta automatica
+  function reply(){
+
+    //clono il template
+    var template = $(".contact-message .contact-message-body").clone();
+
+    template.text("Okok");
+    $("#chat-area").append(template);
   }
 
   $("#send-text").click(sendTheText);

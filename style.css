@@ -201,11 +201,12 @@
 .user-message-body {
   display: flex;
   align-items: center;
-  justify-content: center;
   align-self: flex-end;
   background: rgb(140, 205, 140);
   margin: 20px 30px 10px 20px;
   padding: 20px;
+  border-radius: 20px;
+  min-width: 200px;
 }
 
 .contact-message {
@@ -214,11 +215,12 @@
 .contact-message-body{
   display: flex;
   align-items: center;
-  justify-content: center;
   align-self: flex-start;
   background: white;
   margin: 20px 30px 10px 20px;
   padding: 20px;
+  border-radius: 20px;
+  min-width: 200px;
 }
 
 #text-composition-area {
@@ -238,4 +240,12 @@
   margin: 0 20px;
   padding: 10px;
   border: none;
+}
+
+#send-icon{
+  width: 40px;
+  text-align: center;
+}
+#send-icon:hover{
+  cursor: pointer;
 }
