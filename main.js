@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     if (input !== ""){
       //clono il template
-      var template = $(".user-message .user-message-body").clone();
+      var template = $(".message-templates .user-message-body").clone();
 
       template.text(input);
 
@@ -28,7 +28,7 @@ $(document).ready(function(){
   function reply(){
 
     //clono il template
-    var template = $(".contact-message .contact-message-body").clone();
+    var template = $(".message-templates .contact-message-body").clone();
 
     template.text("Okok");
     $("#chat-area").append(template);
@@ -37,12 +37,12 @@ $(document).ready(function(){
   $("#send-text").click(sendTheText);
 
   $("#chat-text-box").keypress(function(){
+    $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
 
     if ( event.which == 13 ) {
       sendTheText();
     }
 
-    $("#send-text i").removeClass("fa-microphone").addClass("fa-paper-plane");
   });
 
 });
