@@ -154,6 +154,8 @@
   height: 100%;
   width: 70%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 #chat-top-area {
@@ -180,7 +182,7 @@
 
 #chat-area {
   width: 100%;
-  height: calc(100% - 120px);
+  flex-grow: 1;
   background: #e4ddd6;
   overflow: auto;
   font-size: 19px;
@@ -194,8 +196,18 @@
   clear: both;
 }
 
-.user-message {
+.message-templates {
   display: none;
+}
+
+div[class*="message-body"]{
+  margin: 20px 30px 10px 20px;
+  padding: 20px;
+  border-radius: 20px;
+  min-width: 200px;
+  max-width: 50%;
+  overflow-x: hidden;
+  height: auto
 }
 
 .user-message-body {
@@ -203,24 +215,13 @@
   align-items: center;
   align-self: flex-end;
   background: rgb(140, 205, 140);
-  margin: 20px 30px 10px 20px;
-  padding: 20px;
-  border-radius: 20px;
-  min-width: 200px;
 }
 
-.contact-message {
-  display: none;
-}
 .contact-message-body{
   display: flex;
   align-items: center;
   align-self: flex-start;
   background: white;
-  margin: 20px 30px 10px 20px;
-  padding: 20px;
-  border-radius: 20px;
-  min-width: 200px;
 }
 
 #text-composition-area {
