@@ -137,14 +137,18 @@
   align-items: center;
 }
 
-.contact-box i {
-  padding: 0 20px;
+.contact-box img{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 10px;
 }
 
 .contact-box:hover{
   background: rgb(198, 194, 194);
   cursor: pointer;
 }
+
 
 
 /*Area destra*/
