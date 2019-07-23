@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+  $("input").val("");
 
   //mostra il messaggio dell'utente
   function sendTheText(){
@@ -36,13 +37,25 @@ $(document).ready(function(){
 
   $("#send-text").click(sendTheText);
 
-  $("#chat-text-box").keypress(function(){
+  $("#chat-text-box").keyup(function(){
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
 
     if ( event.which == 13 ) {
       sendTheText();
     }
 
+  });
+
+  $("#contact-search").keyup(function(){
+    var input = $(this).val().toLowerCase();
+
+    $(".contact-box").each(function (){
+      $(this).show();
+
+      if(!$(this).find(".name").text().toLowerCase().includes(input)){
+        $(this).hide();
+      }
+    });
   });
 
 });
