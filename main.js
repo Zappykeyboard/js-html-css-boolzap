@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  //pulisco gli input nei campit di testo
+  //pulisco gli input nei campi di testo
   $("input").val("");
 
   //mostra il messaggio dell'utente
@@ -50,20 +50,23 @@ $(document).ready(function(){
 
   //funzione di ricerca contatti
   $("#contact-search").keyup(function(){
+
     //il valore dell'input
     var input = $(this).val().toLowerCase();
 
     $(".contact-box").each(function (){
+
       //mostro il contatto attuale
       $(this).show();
 
       //il nome del contatto attuale
       var contactName = $(this).find(".name").text();
-      
+
       //nascondo solo quelli che non rispondono all'input
       if(!contactName.toLowerCase().includes(input)){
         $(this).hide();
       }
+
     });
   });
 
