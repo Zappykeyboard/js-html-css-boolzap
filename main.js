@@ -3,7 +3,9 @@ $(document).ready(function(){
   //pulisco gli input nei campi di testo
   $("input").val("");
 
+  //messaggio iniziale
   reply();
+
 
   //mostra il messaggio dell'utente
   function sendTheText(){
@@ -49,7 +51,6 @@ $(document).ready(function(){
 
   });
 
-
   //funzione di ricerca contatti
   $("#contact-search").keyup(function(){
 
@@ -70,6 +71,13 @@ $(document).ready(function(){
       }
 
     });
+  });
+
+
+  //funzione per rendere visibile il menu messaggi
+  $("#chat-area").on("click", ".menu-open", function(){
+    //rendo visibile il menu
+    $(this).next().toggle();
   });
 
 });
