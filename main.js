@@ -12,7 +12,7 @@ $(document).ready(function(){
       //clono il template
       var template = $(".message-templates .user-message-body").clone();
 
-      template.text(input);
+      template.find(".the-message").text(input);
 
       $("#chat-area").append(template);
 
@@ -54,8 +54,8 @@ $(document).ready(function(){
     //il valore dell'input
     var input = $(this).val().toLowerCase();
 
+    //itero i contantti
     $(".contact-box").each(function (){
-
 
       //il nome del contatto attuale
       var contactName = $(this).find(".name").text();
