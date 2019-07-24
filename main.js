@@ -6,6 +6,28 @@ $(document).ready(function(){
   //messaggio iniziale
   reply();
 
+  displayChat("#user-0")
+  //funzione per mostrare la chat del contatto rilevante
+  function displayChat(id){
+    if(!id){
+      id = "#user-0";
+    }
+
+    //imposto icona utente e nome utente in alto
+
+    //prelevo l'icona
+    var iconPath = $(id).find("img").attr("src");
+
+    //imposto l'icona
+    $("#contact-info").find("img").attr("src", iconPath);
+
+    //prelevo il nome del contatto
+    var contactName = $(id).find(".name").text();
+
+    //imposto il nome del contatto
+    $("#contact-info").find(".name").text(contactName);
+
+  }
 
   //mostra il messaggio dell'utente
   function sendTheText(){
@@ -78,6 +100,13 @@ $(document).ready(function(){
   $("#chat-area").on("click", ".menu-open", function(){
     //rendo visibile il menu
     $(this).next().toggle();
+  });
+
+  //funzione per cancellare il messaggio
+  $("#chat-area").on("click", ".delete-this", function(){
+    
+    //rimuovo il messaggio
+    $(this).parentsUntil('#chat-area').remove();
   });
 
 });

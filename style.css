@@ -62,7 +62,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  font-size: 25px;
+}
+
+#user-profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 10px;
 }
 
 .action-buttons i:nth-child(2) {
@@ -149,6 +155,10 @@
   cursor: pointer;
 }
 
+.contact-box.active{
+  background: rgb(198, 194, 194);
+}
+
 
 
 /*Area destra*/
@@ -178,10 +188,16 @@
   align-items: center;
 }
 
-#contact-info div{
+#contact-info > div{
   margin: 0 10px;
 }
 
+#contact-info img{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
 
 
 #chat-area {
@@ -250,8 +266,8 @@ div[class*="message-body"]:hover .message-menu-area i{
   position: absolute;
   min-width: 200px;
   background: white;
-  top: 40px;
-  left: 50%;
+  top: 80%;
+  left: 0%;
 }
 
 .message-menu ul li{
