@@ -56,14 +56,14 @@ $(document).ready(function(){
 
     $(".contact-box").each(function (){
 
-      //mostro il contatto attuale
-      $(this).show();
 
       //il nome del contatto attuale
       var contactName = $(this).find(".name").text();
 
       //nascondo solo quelli che non rispondono all'input
-      if(!contactName.toLowerCase().includes(input)){
+      if(contactName.toLowerCase().includes(input)){
+        $(this).show();
+      } else {
         $(this).hide();
       }
 
