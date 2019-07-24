@@ -9,13 +9,17 @@ $(document).ready(function () {
   //qui vengono conservate le varie chat
   var chatStore = {};
 
+  //il template per i messaggi
+  var messagesTemplate = $("#chat-area .message-templates").clone();
+
   displayChat("user-1");
 
 
 
   //funzione per mostrare la chat del contatto rilevante
   function displayChat(id) {
-    console.log("displayChat con id " + id, chatStore.id);
+    console.log("displayChat con id " + id, chatStore[id]);
+
 
     //imposto icona utente e nome utente in alto
 
@@ -31,13 +35,21 @@ $(document).ready(function () {
     //imposto il nome del contatto
     $("#contact-info").find(".name").text(contactName);
 
-    //TODO: inserisci chat nella chat-area
-    if (chatStore.id) {
-      $("#chat-area").replaceWith(chatStore.id);
-      console.log(true)
+  
+
+    //inserisci chat nella chat-area
+    if (chatStore[id] !== undefined) {
+
+      $("#chat-area").append(chatStore[id].html());
+    
     } else {
+
+      //se non c'è niente nella chat, inseriamo il template e poi replichiamo
+      if ($("#chat-area").html() === ""){
+        $("#chat-area").append(messagesTemplate);
+      }
+
       reply();
-      console.log(false)
     }
 
   }
@@ -68,7 +80,7 @@ $(document).ready(function () {
     }
   }
 
-  //mostra la risposta automatica
+  //risposta automatica
   function reply() {
 
     //clono il template
@@ -78,6 +90,8 @@ $(document).ready(function () {
     $("#chat-area").append(template);
   }
 
+
+  //funzione per mandare un messaggio
   $("#send-text").click(sendTheText);
 
   $("#chat-text-box").keyup(function () {
@@ -88,6 +102,8 @@ $(document).ready(function () {
     }
 
   });
+
+
 
   //funzione di ricerca contatti
   $("#contact-search").keyup(function () {
@@ -125,12 +141,14 @@ $(document).ready(function () {
     $(this).parentsUntil('#chat-area').remove();
   });
 
+
+
   //funzione per cambiare la chat visualizzata
   $(".contact-box").click(function () {
 
     //escludo box attivi
     if (!$(this).attr("class").includes("active")) {
-      
+
       //salvo la chat attuale
       var activeChat = $("#chat-area").clone();
 
@@ -140,7 +158,7 @@ $(document).ready(function () {
       $("#" + activeID).removeClass("active");
 
       //conservo la chat per poterla recuperare in seguito
-      chatStore.activeID = activeChat;
+      chatStore[activeID] = activeChat;
 
       //rimuovo i messaggi dalla chat attuale
       $("#chat-area").empty();
@@ -150,8 +168,7 @@ $(document).ready(function () {
       $("#" + contactID).addClass("active")
 
 
-      //var contactChat = chatStore.contactID;
-      console.log(chatStore)
+      console.log(chatStore[activeID].html())
 
       displayChat(contactID);
     }
