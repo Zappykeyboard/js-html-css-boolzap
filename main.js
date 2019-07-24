@@ -44,7 +44,7 @@ $(document).ready(function () {
     
     } else {
 
-      //se non c'è niente nella chat, inseriamo il template e poi replichiamo
+      //se non c'è niente nella chat, inseriamo il template e poi inseriamo un messaggio
       if ($("#chat-area").html() === ""){
         $("#chat-area").append(messagesTemplate);
       }
