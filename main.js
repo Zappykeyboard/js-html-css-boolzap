@@ -3,6 +3,8 @@ $(document).ready(function(){
   //pulisco gli input nei campi di testo
   $("input").val("");
 
+  reply();
+
   //mostra il messaggio dell'utente
   function sendTheText(){
 
@@ -32,7 +34,7 @@ $(document).ready(function(){
     //clono il template
     var template = $(".message-templates .contact-message-body").clone();
 
-    template.text("Okok");
+    template.find(".the-message").text("Okok");
     $("#chat-area").append(template);
   }
 

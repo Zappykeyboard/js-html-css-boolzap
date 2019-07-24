@@ -238,7 +238,7 @@ div[class*="message-body"]:hover .message-menu-area i{
   height: 1rem;
 }
 
-.message-menu-area i{
+.message-menu-area i, .message-menu{
   display: none;
 }
 .message-menu-area i:hover{
