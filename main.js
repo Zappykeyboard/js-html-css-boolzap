@@ -86,7 +86,7 @@ $(document).ready(function () {
     //clono il template
     var template = $(".message-templates .contact-message-body").clone();
 
-    template.find(".the-message").text("Okok");
+    template.find(".the-message").text("BEEP-BOOP");
     $("#chat-area").append(template);
   }
 
