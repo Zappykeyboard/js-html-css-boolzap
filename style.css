@@ -228,12 +228,18 @@ div[class*="message-body"]{
   min-width: 200px;
   max-width: 50%;
   height: auto;
+}
 
+.message-top{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
   position: relative;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .user-message-body {
@@ -252,7 +258,7 @@ div[class*="message-body"]:hover .message-menu-area i{
 }
 
 .message-menu-area{
-  width: 1rem;
+  min-width: 1rem;
   height: 1rem;
 }
 
@@ -282,6 +288,17 @@ div[class*="message-body"]:hover .message-menu-area i{
 .message-menu ul li:hover{
   background: #eaeaea;
   cursor: pointer;
+}
+
+.message-time-cont{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.message-time{
+ font-size: .7rem;
 }
 
 #text-composition-area {

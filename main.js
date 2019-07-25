@@ -68,12 +68,20 @@ $(document).ready(function () {
 
       template.find(".the-message").text(input);
 
+      //inserisco l'ora del messaggio
+      var time = new Date();
+
+      $(template).find(".message-time").text(time.getHours() + ":" + time.getMinutes());
+
       $("#chat-area").append(template);
 
       $("#chat-text-box").val("");
 
       //rimetto l'icona microfono microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
+
+      
+    
 
       //dopo un secondo, genero la risposta 
       setTimeout(reply, 1000);
@@ -88,7 +96,14 @@ $(document).ready(function () {
     //clono il template
     var template = $(".message-templates .contact-message-body").clone();
 
+    //inserisco l'ora del messaggio
+    var time = new Date();
+
+    $(template).find(".message-time").text(time.getHours() + ":" + time.getMinutes());
+
+
     template.find(".the-message").text("BEEP-BOOP");
+
     $("#chat-area").append(template);
   }
 
