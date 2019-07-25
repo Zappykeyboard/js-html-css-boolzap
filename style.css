@@ -252,6 +252,12 @@ div[class*="message-body"]{
   background: white;
 }
 
+.placeholder{
+  align-self: flex-start;
+  margin: 20px 30px 10px 20px;
+  padding: 20px;
+}
+
 /*area menu del singolo messaggio*/
 div[class*="message-body"]:hover .message-menu-area i{
   display: block;

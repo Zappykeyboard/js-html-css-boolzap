@@ -68,10 +68,8 @@ $(document).ready(function () {
 
       template.find(".the-message").text(input);
 
-      //inserisco l'ora del messaggio
-      var time = new Date();
-
-      $(template).find(".message-time").text(time.getHours() + ":" + time.getMinutes());
+      //aggiungo l'ora del messaggio
+      $(template).find(".message-time").text(getTimeString());
 
       $("#chat-area").append(template);
 
@@ -80,11 +78,8 @@ $(document).ready(function () {
       //rimetto l'icona microfono microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
 
-      
-    
-
-      //dopo un secondo, genero la risposta 
-      setTimeout(reply, 1000);
+      //genero la risposta
+      reply();
     }
   }
 
@@ -95,29 +90,42 @@ $(document).ready(function () {
 
     //clono il template
     var template = $(".message-templates .contact-message-body").clone();
+ 
+    //aggiungo l'ora del messaggio
+    $(template).find(".message-time").text(getTimeString());
 
-    //inserisco l'ora del messaggio
-    var time = new Date();
+    $(".last-access span").text(getTimeString());
 
-    $(template).find(".message-time").text(time.getHours() + ":" + time.getMinutes());
+    //inserisco il placeholder in attesa delal risposta
+    var placeHolder = $(".message-templates .placeholder").clone();
+    var sender = $(".contact-box.active .name").text();
+    placeHolder.text(sender + " sta scrivendo…");
+    $("#chat-area").append(placeHolder);
 
+    setTimeout(function(){
 
-    template.find(".the-message").text("BEEP-BOOP");
+      template.find(".the-message").text("BEEP-BOOP");
 
-    $("#chat-area").append(template);
+      //rimuovo il placehoder
+      $("#chat-area > .placeholder").remove();
+
+      //inserisco il messaggio vero e proprio
+      $("#chat-area").append(template);
+    }, 3000)
+    
   }
 
 
 
+  //funzioni per cambiare icona accanto al box di testo
   $("#chat-text-box").on("focus", function(){
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
   });
 
-
   $("#chat-text-box").on("focusout", function(){
-    console.log("off");
     $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
   });
+
 
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
@@ -125,10 +133,6 @@ $(document).ready(function () {
     if (event.which == 13) {
       sendTheText();
     }
-/* 
-    if($(this).val() === ""){
-      $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
-    } */
 
   });
 
@@ -210,4 +214,20 @@ $(document).ready(function () {
     }
   })
 
+
+  function getTimeString(){
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+
+    var timeString = "" + hours;
+    
+    if (minutes < 10){
+      timeString += ":0" + minutes;
+    } else {
+      timeString += ":" + minutes;
+    }
+
+    return timeString;
+  }
 });
