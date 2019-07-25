@@ -10,6 +10,7 @@ $(document).ready(function () {
   //il template per i messaggi
   var messagesTemplate = $("#chat-area .message-templates").clone();
 
+  //inserisco messaggio nelal chat di default
   displayChat("user-1");
 
 
@@ -97,11 +98,17 @@ $(document).ready(function () {
 
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
+
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
+
+    if($(this).val() === ""){
+      $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
+    }
 
     if (event.which == 13) {
       sendTheText();
     }
+
 
   });
 
@@ -137,7 +144,7 @@ $(document).ready(function () {
 
   });
 
-  
+
   //funzione per cancellare il messaggio
   $("#chat-area").on("click", ".delete-this", function () {
 
