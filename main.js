@@ -94,21 +94,26 @@ $(document).ready(function () {
 
 
 
+  $("#chat-text-box").on("focus", function(){
+    $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
+  });
 
+
+  $("#chat-text-box").on("focusout", function(){
+    console.log("off");
+    $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
+  });
 
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
 
-    $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
-
-    if($(this).val() === ""){
-      $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
-    }
-
     if (event.which == 13) {
       sendTheText();
     }
-
+/* 
+    if($(this).val() === ""){
+      $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
+    } */
 
   });
 
