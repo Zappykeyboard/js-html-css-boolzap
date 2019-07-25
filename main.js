@@ -3,8 +3,6 @@ $(document).ready(function () {
   //pulisco gli input nei campi di testo
   $("input").val("");
 
-  //messaggio iniziale
-  //reply();
 
   //qui vengono conservate le varie chat
   var chatStore = {};
@@ -35,17 +33,17 @@ $(document).ready(function () {
     //imposto il nome del contatto
     $("#contact-info").find(".name").text(contactName);
 
-  
+
 
     //inserisci chat nella chat-area
     if (chatStore[id] !== undefined) {
 
       $("#chat-area").append(chatStore[id].html());
-    
+
     } else {
 
       //se non c'è niente nella chat, inseriamo il template e poi inseriamo un messaggio
-      if ($("#chat-area").html() === ""){
+      if ($("#chat-area").html() === "") {
         $("#chat-area").append(messagesTemplate);
       }
 
@@ -55,7 +53,8 @@ $(document).ready(function () {
   }
 
 
-
+  //al click, manda il messaggio
+  $("#send-text").click(sendTheText);
 
   //mostra il messaggio dell'utente
   function sendTheText() {
@@ -80,6 +79,8 @@ $(document).ready(function () {
     }
   }
 
+
+
   //risposta automatica
   function reply() {
 
@@ -91,9 +92,10 @@ $(document).ready(function () {
   }
 
 
-  //funzione per mandare un messaggio
-  $("#send-text").click(sendTheText);
 
+
+
+  //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
 
@@ -102,7 +104,6 @@ $(document).ready(function () {
     }
 
   });
-
 
 
   //funzione di ricerca contatti
@@ -130,15 +131,19 @@ $(document).ready(function () {
 
   //funzione per rendere visibile il menu messaggi
   $("#chat-area").on("click", ".menu-open", function () {
+
     //rendo visibile il menu
     $(this).next().toggle();
+
   });
 
+  
   //funzione per cancellare il messaggio
   $("#chat-area").on("click", ".delete-this", function () {
 
     //rimuovo il messaggio
     $(this).parentsUntil('#chat-area').remove();
+
   });
 
 
@@ -155,6 +160,7 @@ $(document).ready(function () {
       //l'ID del contatto attivo
       var activeID = $(".contact-box.active").attr("id");
 
+      //cambio il colore del box contatto 
       $("#" + activeID).removeClass("active");
 
       //conservo la chat per poterla recuperare in seguito
@@ -165,11 +171,14 @@ $(document).ready(function () {
 
       //l'ID del contatto cliccato
       var contactID = $(this).attr("id");
+
+      //cambio il colore del box contatto 
       $("#" + contactID).addClass("active")
 
 
-      console.log(chatStore[activeID].html())
+      //console.log(chatStore[activeID].html())
 
+      //mostro la chat rilevante
       displayChat(contactID);
     }
   })
