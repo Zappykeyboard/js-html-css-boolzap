@@ -90,11 +90,6 @@ $(document).ready(function () {
 
     //clono il template
     var template = $(".message-templates .contact-message-body").clone();
- 
-    //aggiungo l'ora del messaggio
-    $(template).find(".message-time").text(getTimeString());
-
-    $(".last-access span").text(getTimeString());
 
     //inserisco il placeholder in attesa delal risposta
     var placeHolder = $(".message-templates .placeholder").clone();
@@ -102,9 +97,15 @@ $(document).ready(function () {
     placeHolder.text(sender + " sta scrivendo…");
     $("#chat-area").append(placeHolder);
 
-    setTimeout(function(){
+    setTimeout(function () {
 
       template.find(".the-message").text("BEEP-BOOP");
+
+      //aggiungo l'ora del messaggio
+      $(template).find(".message-time").text(getTimeString());
+
+      //aggiorno l'ultimo accesso
+      $(".last-access span").text(getTimeString());
 
       //rimuovo il placehoder
       $("#chat-area > .placeholder").remove();
@@ -112,17 +113,17 @@ $(document).ready(function () {
       //inserisco il messaggio vero e proprio
       $("#chat-area").append(template);
     }, 3000)
-    
+
   }
 
 
 
   //funzioni per cambiare icona accanto al box di testo
-  $("#chat-text-box").on("focus", function(){
+  $("#chat-text-box").on("focus", function () {
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
   });
 
-  $("#chat-text-box").on("focusout", function(){
+  $("#chat-text-box").on("focusout", function () {
     $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
   });
 
@@ -215,14 +216,14 @@ $(document).ready(function () {
   })
 
 
-  function getTimeString(){
+  function getTimeString() {
     var date = new Date();
     var hours = date.getHours();
     var minutes = date.getMinutes();
 
     var timeString = "" + hours;
-    
-    if (minutes < 10){
+
+    if (minutes < 10) {
       timeString += ":0" + minutes;
     } else {
       timeString += ":" + minutes;
