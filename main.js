@@ -10,8 +10,8 @@ $(document).ready(function () {
   //il template per i messaggi
   var messagesTemplate = $("#chat-area .message-templates").clone();
 
-  //inserisco messaggio nelal chat di default
-  displayChat("user-1");
+  //inserisco messaggio nella chat di default
+  //displayChat("user-1");
 
 
 
@@ -47,8 +47,6 @@ $(document).ready(function () {
       if ($("#chat-area").html() === "") {
         $("#chat-area").append(messagesTemplate);
       }
-
-      reply();
     }
 
   }
@@ -164,7 +162,9 @@ $(document).ready(function () {
   //funzione per rendere visibile il menu messaggi
   $("#chat-area").on("click", ".menu-open", function () {
 
+    //nascondo momentaneamente l'ora del messaggio
     $(this).parentsUntil("#chat-area").find(".message-time-cont .message-time").toggle();
+
     //rendo visibile il menu
     $(this).next().toggle();
     
@@ -209,9 +209,6 @@ $(document).ready(function () {
       //cambio il colore del box contatto 
       $("#" + contactID).addClass("active")
 
-
-      //console.log(chatStore[activeID].html())
-
       //mostro la chat rilevante
       displayChat(contactID);
     }
@@ -222,6 +219,9 @@ $(document).ready(function () {
     var date = new Date();
     var hours = date.getHours();
     var minutes = date.getMinutes();
+    var day = date.getDay();
+    var month = date.getMonth();
+    var year = date.getFullYear();
 
     var timeString = "" + hours;
 
@@ -231,6 +231,9 @@ $(document).ready(function () {
       timeString += ":" + minutes;
     }
 
+    timeString += "-" + year + "/" + month + "/" + day;
+
     return timeString;
   }
+
 });

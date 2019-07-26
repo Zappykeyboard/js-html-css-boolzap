@@ -235,6 +235,7 @@ div[class*="message-body"]{
   align-items: center;
   justify-content: space-between;
   position: relative;
+
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-all;
@@ -253,7 +254,7 @@ div[class*="message-body"]{
 }
 
 .placeholder{
-  align-self: flex-start;
+  /*align-self: flex-start;*/
   margin: 20px 30px 10px 20px;
   padding: 20px;
 }
@@ -266,6 +267,7 @@ div[class*="message-body"]:hover .message-menu-area i{
 .message-menu-area{
   min-width: 1rem;
   height: 1rem;
+  position: relative;
 }
 
 .message-menu-area i, .message-menu{
@@ -279,8 +281,8 @@ div[class*="message-body"]:hover .message-menu-area i{
   position: absolute;
   min-width: 200px;
   background: white;
-  top: 80%;
-  left: 0%;
+  top: 100%;
+  right: -500%;
 }
 
 .message-menu ul li{
