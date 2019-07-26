@@ -164,8 +164,10 @@ $(document).ready(function () {
   //funzione per rendere visibile il menu messaggi
   $("#chat-area").on("click", ".menu-open", function () {
 
+    $(this).parentsUntil("#chat-area").find(".message-time-cont .message-time").toggle();
     //rendo visibile il menu
     $(this).next().toggle();
+    
 
   });
 
