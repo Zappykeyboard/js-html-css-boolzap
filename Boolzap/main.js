@@ -10,12 +10,15 @@ $(document).ready(function () {
 
   //il template per i messaggi
   //var messagesTemplate = $("#chat-area .message-templates").clone();
-  
+
+  //conservo il selettore
   var placeHolderRight = $(".placeholder.right");
 
   //template per i messaggi, versione handlebars
   var source = $("#message-template").html();
   var template = Handlebars.compile(source)
+
+  var chatContent = $("#chat-area").html();
 
   //var placeholderTemplate = Handlebars.compile($("#message-template .placeholder").html());
 
@@ -55,7 +58,7 @@ $(document).ready(function () {
 
       //se non c'è niente nella chat, inseriamo il template e poi inseriamo un messaggio
       if ($("#chat-area").html() === "") {
-        $("#chat-area").append(messagesTemplate);
+        $("#chat-area").append(chatContent);
       }
     }
 
@@ -138,7 +141,7 @@ $(document).ready(function () {
 
     //versione handlebars
     var sender = $(".contact-box.active .name").text();
-    
+
 
     var msgContext = {
       theMessage: "Beep-boop, handlebars!",
@@ -149,25 +152,29 @@ $(document).ready(function () {
 
 
     var themsg = template(msgContext);
-    
+
     $("#chat-area").append(themsg);
 
     //aggiungo il placeholder nella posizione corretta
     $("#chat-area").append(placeHolderRight);
     placeHolderRight.hide();
 
-    setTimeout(function () {
-      
-      //rimuovo il placehoder
-      $("#chat-area .placeholder.left").remove();
+    try {
+      $(".contact-box").click(function(){
+        //rimuovo il placehoder
+        $("#chat-area .placeholder.left").remove();
+        throw "azione interrotta"
+      })
 
-      $("#chat-area .message-body").removeClass("hide");
+      setTimeout(function () {
 
-       //aggiorno l'ultimo accesso
-       $(".last-access span").text(getTimeString());
-      
-    }, 3000);
+        $("#chat-area .message-body").removeClass("hide");
 
+        //aggiorno l'ultimo accesso
+        $(".last-access span").text(getTimeString());
+
+      }, 3000);
+    } catch (err){}
 
   }
 
@@ -188,8 +195,8 @@ $(document).ready(function () {
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
 
-    if ($(this).val()){
-    placeHolderRight.show();
+    if ($(this).val()) {
+      placeHolderRight.show();
     } else {
       placeHolderRight.hide();
     }
