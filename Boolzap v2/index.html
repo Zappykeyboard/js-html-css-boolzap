@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Boolzapp</title>
+</head>
+
+<body>
+  <!--contenitore di tutta la pagina-->
+  <div id="viewport">
+
+    <!--banda estetica superiore-->
+    <div id="green-band"></div>
+
+    <!--contenitore della app vera e propria-->
+    <div id="app-container">
+
+      <!--colonna a sinistra-->
+      <div id="app-left-side">
+
+        <!--sezione profilo-->
+        <div id="user-profile">
+          <div class="user-icon">
+            <img src="img/avatar_io.jpg" alt="icona utente">
+          </div>
+
+          <div class="action-buttons">
+            <i class="fas fa-circle-notch"></i>
+            <i class="fas fa-comment-alt"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+
+        <!--sezione notifiche-->
+        <div id="notification-area">
+          <div class="bell-icon">
+            <i class="fas fa-bell-slash"></i>
+          </div>
+
+          <div id="notification-message">
+            <p>Ricevi nuovi messaggi</p>
+            <p id="activate-notifications">Attiva notifiche sul desktop</p>
+          </div>
+        </div>
+
+        <!--sezione ricerca-->
+        <div id="search-area">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" name="contact-search" id="contact-search" placeholder="Cerca tra i contatti">
+          </div>
+        </div>
+
+        <!--sezione contatti-->
+        <div id="contact-list">
+
+          <!--template contatti-->
+          <script id="contact-template" type="text/x-handlebars-template">
+            <div contactID="{{userID}}" class="contact-box">
+            <div class="contact-icon">
+                <img src="{{icon}}" alt="icona contatto">
+              </div>
+  
+              <div class="contact-info">
+                <p class="name">{{userName}}</p>
+                <div class="status">Disponibile</div>
+              </div>
+            </div>
+          </script>
+
+
+        </div>
+
+      </div>
+
+
+      <!--colonna a destra-->
+      <div id="app-right-side">
+
+        <!--area superiore-->
+        <div id="chat-top-area">
+
+          <div id="contact-info">
+            <div class="contact-icon">
+              <img src="" alt="icona utente">
+            </div>
+
+            <div class="contact-info">
+              <p class="name"></p>
+              <p class="last-access">Ultimo accesso: <span></span></p>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-paperclip"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+
+        <!--area chat-->
+        <div id="chat-area">
+
+          <!--template per handlebars-->
+          <script id="message-template" type="text/x-handlebars-template">
+            <div class="message-body {{messageOwner}} hide">
+              
+                  <div class="message-top">
+                    <p class="the-message">{{theMessage}}</p>
+                    <div class="message-menu-area">
+                      <i class="fas fa-chevron-left menu-open"></i>
+                    </div>
+                  </div>
+
+                  <div class="message-time-cont">
+                    <p class="message-time">{{messageTime}}</p>
+                  </div>
+                  <div class="message-menu">
+                      <ul>
+                        <li>Info Messaggio</li>
+                        <li class="delete-this">Cancella Messaggio</li>
+                      </ul>
+                    </div>
+            </div>
+            
+          </script>
+
+
+        </div>
+
+
+        <!--area composizione messaggio-->
+
+        <div id="text-composition-area">
+
+          <div id="placeholder-container">
+            <div class="placeholder left"><span></span> </div>
+            <div class="placeholder right"><span class="hide">Edoardo sta scrivendo…</span></div>
+          </div>
+          <div>
+            <i class="far fa-smile"></i>
+          </div>
+          <input type="text" id="chat-text-box" placeholder="Scrivi un messaggio">
+          <div id="send-text">
+            <i id="send-icon" class="fas fa-microphone"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

@@ -54,12 +54,11 @@ $(document).ready(function () {
 
       $("#chat-area").append(chatStore[id].html());
 
-    } else {
+    } else if ($("#chat-area").html() === ""){
 
-      //se non c'è niente nella chat, inseriamo il template e poi inseriamo un messaggio
-      if ($("#chat-area").html() === "") {
+      //se non c'è niente nella chat, inseriamo il template 
         $("#chat-area").append(chatContent);
-      }
+      
     }
 
   }
@@ -210,12 +209,10 @@ $(document).ready(function () {
 
 
       //cancello il contenuto del campo
-      $("#chat-text-box").val("");
+      $(this).val("");
 
       //rimetto l'icona microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
-
-
 
     }
 
