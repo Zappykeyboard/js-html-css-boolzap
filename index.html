@@ -179,7 +179,7 @@
 
         <!--area chat-->
         <div id="chat-area">
-          <div class="message-templates">
+          <!-- <div class="message-templates">
 
             <div class="user-message-body">
               <div class="message-top">
@@ -197,6 +197,8 @@
               <div class="message-time-cont">
                 <p class="message-time"></p>
               </div>
+              <div class="placeholder">    
+                </div>
             </div>
 
             <div class="contact-message-body">
@@ -219,7 +221,36 @@
 
             <div class="placeholder">    
             </div>
-          </div>
+          </div> -->
+
+          <!--template per handlebars-->
+          <script id="message-template" type="text/x-handlebars-template">
+            <div class="message-body {{messageOwner}} hide">
+              
+                <div class="message-top">
+                    <p class="the-message">{{theMessage}}</p>
+                    <div class="message-menu-area">
+                      <i class="fas fa-chevron-down menu-open"></i>
+                      <div class="message-menu">
+                        <ul>
+                          <li>Info Messaggio</li>
+                          <li class="delete-this">Cancella Messaggio</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="message-time-cont">
+                    <p class="message-time">{{messageTime}}</p>
+                  </div>
+            </div>
+            <div class="placeholder left"> 
+                {{placeholder}}   
+              </div>
+          </script>
+          <div class="placeholder right">Edoardo sta scrivendo…</div>
+
+
 
 
         </div>
@@ -239,7 +270,7 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
   <script src="main.js"></script>
 </body>
 

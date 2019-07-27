@@ -4,14 +4,23 @@ $(document).ready(function () {
   $("input").val("");
 
 
+
   //qui vengono conservate le varie chat
   var chatStore = {};
 
   //il template per i messaggi
-  var messagesTemplate = $("#chat-area .message-templates").clone();
+  //var messagesTemplate = $("#chat-area .message-templates").clone();
+  
+
+  //template per i messaggi, versione handlebars
+  var source = $("#message-template").html();
+  var template = Handlebars.compile(source)
+
+  //var placeholderTemplate = Handlebars.compile($("#message-template .placeholder").html());
+
 
   //inserisco messaggio nella chat di default
-  //displayChat("user-1");
+  displayChat("user-1");
 
 
 
@@ -62,7 +71,7 @@ $(document).ready(function () {
 
     if (input !== "") {
       //clono il template
-      var template = $(".message-templates .user-message-body").clone();
+      /* var template = $(".message-templates .user-message-body").clone();
 
       template.find(".the-message").text(input);
 
@@ -73,8 +82,21 @@ $(document).ready(function () {
 
       $("#chat-text-box").val("");
 
-      //rimetto l'icona microfono microfono
+      //rimetto l'icona microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
+ */
+
+      //versione handlebars
+      var context = {
+        theMessage: input,
+        messageTime: getTimeString(),
+        messageOwner: "user",
+      };
+
+      var html = template(context);
+
+      $("#chat-area").append(html);
+      $("#chat-area .message-body").removeClass("hide");
 
       //genero la risposta
       reply();
@@ -86,31 +108,61 @@ $(document).ready(function () {
   //risposta automatica
   function reply() {
 
-    //clono il template
-    var template = $(".message-templates .contact-message-body").clone();
+    /*  //clono il template
+     var template = $(".message-templates .contact-message-body").clone();
+ 
+     //inserisco il placeholder in attesa della risposta
+     //var placeHolder = $(".message-templates .placeholder").clone();
+ 
+     var sender = $(".contact-box.active .name").text();
+     placeHolder.text(sender + " sta scrivendo…");
+     $("#chat-area").append(placeHolder);
+ 
+     setTimeout(function () {
+ 
+       template.find(".the-message").text("BEEP-BOOP");
+ 
+       //aggiungo l'ora del messaggio
+       $(template).find(".message-time").text(getTimeString());
+ 
+       //aggiorno l'ultimo accesso
+       $(".last-access span").text(getTimeString());
+ 
+       //rimuovo il placehoder
+       $("#chat-area > .placeholder").remove();
+ 
+       //inserisco il messaggio vero e proprio
+       $("#chat-area").append(template);
+     }, 3000) */
 
-    //inserisco il placeholder in attesa delal risposta
-    var placeHolder = $(".message-templates .placeholder").clone();
+    //versione handlebars
     var sender = $(".contact-box.active .name").text();
-    placeHolder.text(sender + " sta scrivendo…");
-    $("#chat-area").append(placeHolder);
+    
+
+    var msgContext = {
+      theMessage: "Beep-boop, handlebars!",
+      messageTime: getTimeString(),
+      messageOwner: "contact",
+      placeholder: sender + " sta scrivendo…",
+    };
+
+
+    var themsg = template(msgContext);
+    
+    $("#chat-area").append(themsg);
 
     setTimeout(function () {
-
-      template.find(".the-message").text("BEEP-BOOP");
-
-      //aggiungo l'ora del messaggio
-      $(template).find(".message-time").text(getTimeString());
-
-      //aggiorno l'ultimo accesso
-      $(".last-access span").text(getTimeString());
-
+      
       //rimuovo il placehoder
-      $("#chat-area > .placeholder").remove();
+      $("#chat-area .placeholder.left").remove();
 
-      //inserisco il messaggio vero e proprio
-      $("#chat-area").append(template);
-    }, 3000)
+      $("#chat-area .message-body").removeClass("hide");
+
+       //aggiorno l'ultimo accesso
+       $(".last-access span").text(getTimeString());
+      
+    }, 3000);
+
 
   }
 
@@ -119,18 +171,32 @@ $(document).ready(function () {
   //funzioni per cambiare icona accanto al box di testo
   $("#chat-text-box").on("focus", function () {
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
+    $("#chat-area .placeholder.right").show();
   });
 
   $("#chat-text-box").on("focusout", function () {
     $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
+    $("#chat-area .placeholder.right").hide();
   });
 
 
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
 
+    $("#chat-area .placeholder.right").show();
+
     if (event.which == 13) {
+      $("#chat-area .placeholder.right").hide();
+
       sendTheText();
+
+      //cancello il contenuto del campo
+      $("#chat-text-box").val("");
+
+      //rimetto l'icona microfono
+      $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
+
+
     }
 
   });
@@ -167,7 +233,7 @@ $(document).ready(function () {
 
     //rendo visibile il menu
     $(this).next().toggle();
-    
+
 
   });
 
@@ -219,10 +285,11 @@ $(document).ready(function () {
     var date = new Date();
     var hours = date.getHours();
     var minutes = date.getMinutes();
-    var day = date.getDay();
+    var day = date.getDate();
     var month = date.getMonth();
     var year = date.getFullYear();
 
+    console.log(day);
     var timeString = "" + hours;
 
     if (minutes < 10) {
@@ -231,7 +298,7 @@ $(document).ready(function () {
       timeString += ":" + minutes;
     }
 
-    timeString += "-" + year + "/" + month + "/" + day;
+    timeString += "-" + year + "/" + (month + 1) + "/" + day;
 
     return timeString;
   }

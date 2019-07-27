@@ -13,6 +13,11 @@
   position: relative;
 }
 
+/*classe helper per nascondere elementi*/
+.hide{
+  display: none;
+}
+
 
 /*banda verde*/
 
@@ -201,6 +206,7 @@
 }
 
 
+
 #chat-area {
   width: 100%;
   flex-grow: 1;
@@ -243,18 +249,25 @@ div[class*="message-body"]{
   hyphens: auto;
 }
 
-.user-message-body {
+.user{
   align-self: flex-end;
   background: rgb(140, 205, 140);
 }
 
-.contact-message-body{
+.contact{
   align-self: flex-start;
   background: white;
 }
 
-.placeholder{
-  /*align-self: flex-start;*/
+.placeholder.right{
+  display: none;
+  align-self: flex-end;
+  margin: 20px 30px 10px 20px;
+  padding: 20px;
+}
+
+.placeholder.left{
+  align-self: flex-start;
   margin: 20px 30px 10px 20px;
   padding: 20px;
 }
