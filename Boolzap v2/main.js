@@ -176,6 +176,9 @@ $(document).ready(function () {
     }
 
     contactPlaceHolder.text(sender + " sta scrivendo…");
+    
+    //aggiorno l'ultimo accesso
+    $(".last-access span").text(getTimeString());
 
     setTimeout(function () {
       //appendo il messaggio...
@@ -299,7 +302,7 @@ $(document).ready(function () {
         chatStore[activeID] = theChat;
 
 
-        $(".contact-box[contactID='"+activeID+"']").removeClass("active");
+        $(".contact-box[contactID='" + activeID + "']").removeClass("active");
 
         //vuoto la chat attuale 
         chatArea.empty();
@@ -307,7 +310,7 @@ $(document).ready(function () {
         //l'ID del contatto cliccato
         var contactID = $(this).attr("contactID");
 
-        $(".contact-box[contactID='"+contactID+"']").addClass("active");
+        $(".contact-box[contactID='" + contactID + "']").addClass("active");
 
         displayChat(contactID)
       }
