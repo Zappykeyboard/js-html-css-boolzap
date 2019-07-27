@@ -11,6 +11,7 @@ $(document).ready(function () {
   //il template per i messaggi
   //var messagesTemplate = $("#chat-area .message-templates").clone();
   
+  var placeHolderRight = $(".placeholder.right");
 
   //template per i messaggi, versione handlebars
   var source = $("#message-template").html();
@@ -151,6 +152,10 @@ $(document).ready(function () {
     
     $("#chat-area").append(themsg);
 
+    //aggiungo il placeholder nella posizione corretta
+    $("#chat-area").append(placeHolderRight);
+    placeHolderRight.hide();
+
     setTimeout(function () {
       
       //rimuovo il placehoder
@@ -171,30 +176,38 @@ $(document).ready(function () {
   //funzioni per cambiare icona accanto al box di testo
   $("#chat-text-box").on("focus", function () {
     $("#send-text #send-icon").removeClass("fa-microphone").addClass("fa-paper-plane");
-    $("#chat-area .placeholder.right").show();
+    placeHolderRight.show();
   });
 
   $("#chat-text-box").on("focusout", function () {
     $("#send-text #send-icon").addClass("fa-microphone").removeClass("fa-paper-plane");
-    $("#chat-area .placeholder.right").hide();
+    placeHolderRight.hide();
   });
 
 
   //funzione per mandare un messaggio
   $("#chat-text-box").keyup(function () {
 
-    $("#chat-area .placeholder.right").show();
+    if ($(this).val()){
+    placeHolderRight.show();
+    } else {
+      placeHolderRight.hide();
+    }
 
     if (event.which == 13) {
-      $("#chat-area .placeholder.right").hide();
+
+      //rimuovo il placehoder 
+      placeHolderRight.remove();
 
       sendTheText();
+
 
       //cancello il contenuto del campo
       $("#chat-text-box").val("");
 
       //rimetto l'icona microfono
       $("#send-text #send-icon").removeClass("fa-paper-plane").addClass("fa-microphone");
+
 
 
     }
