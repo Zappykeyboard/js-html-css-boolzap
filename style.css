@@ -150,10 +150,32 @@
 }
 
 .contact-box img{
-  width: 64px;
-  height: 64px;
+  max-width: 48px;
+  max-height: 48px;
+  width: 80%;
+  height: 50%;
   border-radius: 50%;
   margin: 0 10px;
+}
+
+@media all and (max-width: 800px){
+  .contact-box .contact-info{
+    display: none;   
+  }
+
+  .contact-box{
+    justify-content: center;
+  }
+
+
+  #notification-message{
+    display: none;
+  }
+
+  #notification-area{
+    justify-content: center;
+  }
+
 }
 
 .contact-box:hover{
@@ -199,8 +221,10 @@
 }
 
 #contact-info img{
-  width: 48px;
-  height: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  width: 80%;
+  height: 80%;
   border-radius: 50%;
   margin: 0 10px;
 }
