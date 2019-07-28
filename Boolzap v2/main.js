@@ -120,17 +120,15 @@ $(document).ready(function () {
     $("#contact-info").find(".name").text(contactName);
 
     //inserisci chat nella chat-area
-    if (chatStore[id] !== undefined) {
+    if (chatStore[id]) {
+      
       //aggiungo la chat salvata nella finestra
       chatArea.append(chatStore[id]);
 
       lastMessageTime = chatArea.find(".contact:last .message-time").text();
       updateLastAccess(lastMessageTime);
 
-    } else if (chatArea.html() === "") {
-      console.log("HELlo")
-      updateLastAccess("Mai");
-    }
+    } 
   }
 
   function sendTheText(text) {
@@ -188,7 +186,7 @@ $(document).ready(function () {
     contactPlaceHolder.text(sender + " sta scrivendo…");
 
     updateLastAccess(getTimeString());
-    
+
     setTimeout(function () {
       //appendo il messaggio...
       chatArea.append(hMessageTemplate(context));
