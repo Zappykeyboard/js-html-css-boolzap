@@ -121,9 +121,11 @@ $(document).ready(function () {
 
     //inserisci chat nella chat-area
     if (chatStore[id]) {
-      
+
       //aggiungo la chat salvata nella finestra
       chatArea.append(chatStore[id]);
+      
+      scrollToBottom();
 
       lastMessageTime = chatArea.find(".contact:last .message-time").text();
       updateLastAccess(lastMessageTime);
@@ -141,10 +143,13 @@ $(document).ready(function () {
         messageOwner: "user",
       };
 
+      var theTextElement = hMessageTemplate(context);
       //appendo il messaggio...
-      chatArea.append(hMessageTemplate(context));
+      chatArea.append(theTextElement);
       //...e lo rendo visibile
       $("#chat-area .message-body").removeClass("hide");
+
+      scrollToBottom();
 
       reply();
     }
@@ -172,6 +177,7 @@ $(document).ready(function () {
     return timeString;
   }
 
+  //funzione di risposta automatica
   function reply() {
 
     var sender = $(".contact-box.active .name").text();
@@ -192,16 +198,24 @@ $(document).ready(function () {
       chatArea.append(hMessageTemplate(context));
       //...e lo rendo visibile
       $("#chat-area .message-body").removeClass("hide");
-
+      scrollToBottom();
       contactPlaceHolder.text("");
+
     }, 2000);
 
 
   }
 
+  //aggiorna la stringa di ultimo accesso
   function updateLastAccess(timeString) {
     //aggiorno l'ultimo accesso
     $(".last-access span").text(timeString);
+  }
+
+  //scorri la finestra se necessario
+  function scrollToBottom(){
+    //Credits a Alessandro Gammieri per la soluzione
+    chatArea.scrollTop(chatArea[0].scrollHeight);
   }
 
   //funzione di ricerca contatti
