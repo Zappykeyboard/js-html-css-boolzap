@@ -99,7 +99,13 @@ $(document).ready(function () {
   //imposto nome,icona e chat nello spazio in alto
   function displayChat(id) {
 
+
+    //vuoto la chat attuale 
+    chatArea.empty();
+
     var contactSelector = $("[contactID=" + id + "]");
+
+    updateLastAccess("Mai");
 
     //prelevo l'icona
     var iconPath = contactSelector.find("img").attr("src");
@@ -117,9 +123,13 @@ $(document).ready(function () {
     if (chatStore[id] !== undefined) {
       //aggiungo la chat salvata nella finestra
       chatArea.append(chatStore[id]);
+
+      lastMessageTime = chatArea.find(".contact:last .message-time").text();
+      updateLastAccess(lastMessageTime);
+
     } else if (chatArea.html() === "") {
-      //se non c'è niente nella chat, inseriamo il template 
-      chatArea.append(chatContent);
+      console.log("HELlo")
+      updateLastAccess("Mai");
     }
   }
 
@@ -176,10 +186,9 @@ $(document).ready(function () {
     }
 
     contactPlaceHolder.text(sender + " sta scrivendo…");
-    
-    //aggiorno l'ultimo accesso
-    $(".last-access span").text(getTimeString());
 
+    updateLastAccess(getTimeString());
+    
     setTimeout(function () {
       //appendo il messaggio...
       chatArea.append(hMessageTemplate(context));
@@ -190,6 +199,11 @@ $(document).ready(function () {
     }, 2000);
 
 
+  }
+
+  function updateLastAccess(timeString) {
+    //aggiorno l'ultimo accesso
+    $(".last-access span").text(timeString);
   }
 
   //funzione di ricerca contatti
@@ -287,7 +301,7 @@ $(document).ready(function () {
   });
 
 
-
+  //funzione per passare da una chat all'altra
   $(".contact-box").on("click", function () {
     {
 
@@ -301,11 +315,7 @@ $(document).ready(function () {
 
         chatStore[activeID] = theChat;
 
-
         $(".contact-box[contactID='" + activeID + "']").removeClass("active");
-
-        //vuoto la chat attuale 
-        chatArea.empty();
 
         //l'ID del contatto cliccato
         var contactID = $(this).attr("contactID");
